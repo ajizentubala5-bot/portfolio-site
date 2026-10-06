@@ -45,6 +45,8 @@ export default function PortfolioApp() {
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [viewerRange, setViewerRange] = useState<'7d' | '30d' | '90d'>('30d');
 
+  const FORM_ENDPOINT = 'https://formspree.io/f/mdeakpgv';
+
   const skillCategories: SkillCategory[] = [
     {
       id: 'ai-ds',
@@ -158,10 +160,29 @@ export default function PortfolioApp() {
     ? skillCategories
     : skillCategories.filter(cat => cat.id === activeTab);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      setFormSubmitted(true);
+      form.reset();
+      setTimeout(() => setFormSubmitted(false), 5000);
+    } catch (error) {
+      console.error('Form submission failed:', error);
+      setFormSubmitted(true);
+      setTimeout(() => setFormSubmitted(false), 5000);
+    }
   };
 
   const analyticsByRange = {
@@ -751,7 +772,7 @@ export default function PortfolioApp() {
                     <h3 className="text-2xl sm:text-3xl font-bold text-slate-100 pt-2">{study.title}</h3>
                     <p className="text-xs text-slate-400 font-medium">{study.category}</p>
                   </div>
-                  <a href="C:/Users/DELL/Downloads/Bala A G CV.docx" download className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-all">
+                  <a href="/portfolio-site/Bala-A-G-CV.docx" download className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-all">
                     <Download className="w-3.5 h-3.5" />
                     Download CV
                   </a>
@@ -1025,28 +1046,28 @@ export default function PortfolioApp() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} action={FORM_ENDPOINT} method="POST" className="space-y-6">
                   <h3 className="text-xl font-bold text-slate-100">Send an Enterprise Inquiry</h3>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Your Name</label>
-                      <input type="text" required placeholder="John Doe" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
+                      <input type="text" name="name" required placeholder="John Doe" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Your Email</label>
-                      <input type="email" required placeholder="john@organization.com" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
+                      <input type="email" name="email" required placeholder="john@organization.com" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Engagement Subject</label>
-                    <input type="text" required placeholder="e.g., Enterprise Power Platform Migration & AI Project" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
+                    <input type="text" name="subject" required placeholder="e.g., Enterprise Power Platform Migration & AI Project" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Project Scope / Details</label>
-                    <textarea rows={5} required placeholder="Outline your database, machine learning, or Power Platform project requirements..." className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm resize-none" />
+                    <textarea name="message" rows={5} required placeholder="Outline your database, machine learning, or Power Platform project requirements..." className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm resize-none" />
                   </div>
 
                   <button type="submit" className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-sm hover:opacity-90 transition-all shadow-lg shadow-cyan-500/20">
@@ -1068,7 +1089,7 @@ export default function PortfolioApp() {
             <a href="#about" className="hover:text-slate-300 transition-colors">About</a>
             <a href="#skills" className="hover:text-slate-300 transition-colors">Skills Matrix</a>
             <a href="#case-studies" className="hover:text-slate-300 transition-colors">Case Studies</a>
-            <a href="C:/Users/DELL/Downloads/Bala A G CV.docx" download className="hover:text-cyan-400 transition-colors">CV</a>
+            <a href="/portfolio-site/Bala-A-G-CV.docx" download className="hover:text-cyan-400 transition-colors">CV</a>
           </div>
         </div>
       </footer>
