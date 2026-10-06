@@ -296,7 +296,7 @@ export default function PortfolioApp() {
               WhatsApp
             </a>
             <a
-              href="/Bala-A-G-CV.docx"
+              href="/portfolio-site/Bala-A-G-CV.docx"
               download
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-semibold text-sm hover:opacity-90 transition-all shadow-md shadow-cyan-500/10"
             >
@@ -328,7 +328,7 @@ export default function PortfolioApp() {
               </svg>
               WhatsApp
             </a>
-            <a href="/Bala-A-G-CV.docx" download className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-semibold text-sm">
+            <a href="/portfolio-site/Bala-A-G-CV.docx" download className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-semibold text-sm">
               <Download className="w-4 h-4" />
               Download CV
             </a>
@@ -344,7 +344,7 @@ export default function PortfolioApp() {
           <div className="text-center max-w-4xl mx-auto space-y-6">
             <div className="flex justify-center pb-2">
               <img
-                src="/profile-photo.jpg"
+                src="/portfolio-site/profile-photo.jpg"
                 alt="Bala Ajizentu"
                 className="w-32 h-32 rounded-full object-cover border-4 border-cyan-500/60 shadow-[0_0_30px_rgba(34,211,238,0.25)] bg-slate-900"
               />
@@ -367,7 +367,7 @@ export default function PortfolioApp() {
                 Explore Enterprise Case Studies
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="/Bala-A-G-CV.docx" download className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-semibold text-base transition-all">
+              <a href="/portfolio-site/Bala-A-G-CV.docx" download className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-semibold text-base transition-all">
                 <Download className="w-5 h-5 text-cyan-400" />
                 Download CV
               </a>
