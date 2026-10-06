@@ -44,6 +44,12 @@ export default function PortfolioApp() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [viewerRange, setViewerRange] = useState<'7d' | '30d' | '90d'>('30d');
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
 
   const FORM_ENDPOINT = 'https://formspree.io/f/mdeakpgv';
 
@@ -176,6 +182,7 @@ export default function PortfolioApp() {
       });
 
       setFormSubmitted(true);
+      setFormState({ name: '', email: '', subject: '', message: '' });
       form.reset();
       setTimeout(() => setFormSubmitted(false), 5000);
     } catch (error) {
@@ -183,6 +190,10 @@ export default function PortfolioApp() {
       setFormSubmitted(true);
       setTimeout(() => setFormSubmitted(false), 5000);
     }
+  };
+
+  const updateFormValue = (field: keyof typeof formState, value: string) => {
+    setFormState(prev => ({ ...prev, [field]: value }));
   };
 
   const analyticsByRange = {
@@ -1040,34 +1051,37 @@ export default function PortfolioApp() {
                   <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-100">Message Received!</h3>
+                  <h3 className="text-2xl font-bold text-slate-100">Inquiry Sent Successfully</h3>
                   <p className="text-slate-400 text-sm max-w-md">
-                    Thank you for reaching out. I will review your inquiry and get back to you shortly.
+                    Thanks for reaching out. Your message has been sent and is now visible in your Formspree dashboard and email inbox.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} action={FORM_ENDPOINT} method="POST" className="space-y-6">
                   <h3 className="text-xl font-bold text-slate-100">Send an Enterprise Inquiry</h3>
 
+                  <input type="hidden" name="_subject" value={formState.subject ? `Portfolio inquiry: ${formState.subject}` : 'Portfolio inquiry'} />
+                  <input type="hidden" name="_replyto" value={formState.email} />
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Your Name</label>
-                      <input type="text" name="name" required placeholder="John Doe" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
+                      <input type="text" name="name" value={formState.name} onChange={(e) => updateFormValue('name', e.target.value)} required placeholder="John Doe" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Your Email</label>
-                      <input type="email" name="email" required placeholder="john@organization.com" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
+                      <input type="email" name="email" value={formState.email} onChange={(e) => updateFormValue('email', e.target.value)} required placeholder="john@organization.com" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Engagement Subject</label>
-                    <input type="text" name="subject" required placeholder="e.g., Enterprise Power Platform Migration & AI Project" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
+                    <input type="text" name="subject" value={formState.subject} onChange={(e) => updateFormValue('subject', e.target.value)} required placeholder="e.g., Enterprise Power Platform Migration & AI Project" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm" />
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Project Scope / Details</label>
-                    <textarea name="message" rows={5} required placeholder="Outline your database, machine learning, or Power Platform project requirements..." className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm resize-none" />
+                    <textarea name="message" value={formState.message} onChange={(e) => updateFormValue('message', e.target.value)} rows={5} required placeholder="Outline your database, machine learning, or Power Platform project requirements..." className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 text-sm resize-none" />
                   </div>
 
                   <button type="submit" className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-sm hover:opacity-90 transition-all shadow-lg shadow-cyan-500/20">
