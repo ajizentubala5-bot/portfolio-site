@@ -92,24 +92,25 @@ export default function PortfolioApp() {
   const caseStudies: CaseStudy[] = [
     {
       id: 'cs-1',
-      badge: 'Enterprise Automation',
-      title: 'Enterprise Workload & Application Tracker System',
-      category: 'Power Apps • Power Automate • Power BI • SQL / SharePoint',
-      tags: ['Power Apps Canvas', 'Power Automate', 'Power BI', 'SQL Server', 'SharePoint', 'RBAC'],
-      archDiagram: `[ Operations Input ] ──> [ Power Apps Canvas ] ──> [ SQL / SharePoint Data Hub ]
-                                                            │
-[ Executive Dashboard ] <── [ Power BI ] <── [ Power Automate Trigger ]`,
-      problem: 'Operational support tracking at Chevron Nigeria Limited suffered from disparate spreadsheets and manual updates, resulting in zero real-time visibility, SLA breach risks, and unbalanced workload distribution across teams.',
+      badge: 'Chevron Graduate Intern',
+      title: 'Chevron Graduate Intern Final Report-Out',
+      category: 'Power BI • Power Apps • Power Automate • Python • Data Governance',
+      tags: ['Power BI', 'Power Apps', 'Power Automate', 'Python', 'Documentum', 'Data & Insights'],
+      archDiagram: `[ Manual Reporting ] ──> [ Power BI & Power Apps ] ──> [ Operational Insights ]
+                              │
+[ SQL / SharePoint / Documentum ] <── [ Automation & Data Governance ]`,
+      problem: 'Chevron’s operational planning, database monitoring, asset tracking, and document-heavy workflows were fragmented across SSRS, manual reporting, and scattered document repositories. The result was slow visibility, inconsistent KPI reporting, and limited access to trusted operational data.',
       solution: [
-        'Engineered a dynamic, multi-page Power Apps Canvas UI with role-based access control (RBAC).',
-        'Structured relational backend schemas in SQL Server and SharePoint with automated audit trails.',
-        'Built multi-stage Power Automate orchestrations for automated escalation triggers and SLA monitoring.',
-        'Designed an embedded real-time Power BI dashboard displaying team capacity metrics and queue velocity.'
+        'Modernized the NMA DBA Monitoring Dashboard from SSRS to Power BI, improving KPI accessibility and operational visibility.',
+        'Built the NMA DNI Inventory Tracking Tool with Power Apps, SharePoint, and Power Automate to centralize expiry monitoring and automate alerts.',
+        'Automated DBA reporting workflows to retrieve KPI data, validate reports, and distribute KPI updates to stakeholders through scheduled email notifications.',
+        'Developed a Python-based well file extraction workflow to automate data capture from Documentum and digitize scanned well records for reuse in analysis and reporting.',
+        'Supported cross-functional operations using Power Apps and Power BI for UAV surveillance tracking, planning dashboards, and data-driven operational insights.'
       ],
       metrics: [
-        { value: '40%', label: 'Manual Reporting Overhead Reduced' },
-        { value: '100%', label: 'Real-Time Operational Visibility' },
-        { value: '25%', label: 'Faster Ticket SLA Response Time' }
+        { value: '1 Year', label: 'Graduate Internship Duration' },
+        { value: '7+', label: 'Business-Facing Solutions Delivered' },
+        { value: '100%', label: 'Operational & Reporting Visibility' }
       ],
       accentColor: 'from-cyan-500/20 to-blue-600/10 border-cyan-500/30'
     },
@@ -159,6 +160,72 @@ export default function PortfolioApp() {
         { value: 'Peer-Reviewed', label: 'Published Research Framework' }
       ],
       accentColor: 'from-indigo-500/20 to-purple-600/10 border-indigo-500/30'
+    },
+    {
+      id: 'cs-4',
+      badge: 'Chevron Digital Innovation',
+      title: 'NMA DBA Monitoring Dashboard',
+      category: 'Power BI • SQL Server • Automated Operations • Data Governance',
+      tags: ['Power BI', 'DBA Monitoring', 'Stored Procedures', 'Automation', 'Operational Alerts'],
+      archDiagram: `[ Legacy SSRS Reports ] ──> [ SQL Monitoring Queries ] ──> [ Power BI KPI Layer ]
+                                                           │
+[ DBA Notifications ] <── [ Power Automate ] <─────────────┘` ,
+      problem: 'Legacy DBA reporting was fragmented across SSRS and manual validation steps, leaving stakeholders without a unified operational view and slowing intervention against production risks.',
+      solution: [
+        'Built a modern Power BI dashboard that replaced SSRS outputs with a unified KPI and health-monitoring experience.',
+        'Refactored repetitive SQL logic into stored procedures to improve consistency, traceability, and execution speed.',
+        'Integrated scheduled alert workflows to notify database owners of critical deviations before they became operational issues.'
+      ],
+      metrics: [
+        { value: '24/7', label: 'Operational Visibility' },
+        { value: 'Faster', label: 'DBA Response Time' },
+        { value: '100%', label: 'Monitoring Coverage' }
+      ],
+      accentColor: 'from-cyan-500/20 to-sky-600/10 border-cyan-500/30'
+    },
+    {
+      id: 'cs-5',
+      badge: 'Chevron Asset Management',
+      title: 'NMA DNI Inventory Tracking Tool',
+      category: 'Power Apps • SharePoint • Power Automate • Asset Control',
+      tags: ['Power Apps', 'SharePoint', 'Inventory', 'Alerts', 'Asset Governance'],
+      archDiagram: `[ Inventory Inputs ] ──> [ Power Apps Interface ] ──> [ SharePoint Repository ]
+                                             │
+[ Expiry Alerts ] <── [ Power Automate ] <───┘`,
+      problem: 'Critical inventory and expiry tracking were difficult to govern in a distributed operational setting, leaving the team exposed to missed deadlines and poor asset visibility.',
+      solution: [
+        'Developed a Power Apps-driven tracking system for inventory monitoring across operational assets.',
+        'Connected the workflow to SharePoint and automated alerting logic for expiring or out-of-threshold items.',
+        'Enabled faster review cycles and clearer ownership of operational records across teams.'
+      ],
+      metrics: [
+        { value: 'Critical', label: 'Asset Visibility' },
+        { value: 'Auto', label: 'Expiry Alerts' },
+        { value: 'Lower', label: 'Operational Risk' }
+      ],
+      accentColor: 'from-emerald-500/20 to-teal-600/10 border-emerald-500/30'
+    },
+    {
+      id: 'cs-6',
+      badge: 'Chevron Planning & Operations',
+      title: 'NMA Integrated Planning & Scheduling Dashboard',
+      category: 'Power BI • Power Apps • Process Automation • Operational Planning',
+      tags: ['IP&S Dashboard', 'Planning', 'Scheduling', 'Operational Insights', 'Power Platform'],
+      archDiagram: `[ Fragmented Planning Data ] ──> [ Power Apps Intake ] ──> [ Unified Operations Dashboard ]
+                                                   │
+                                    [ Power Automate ] <───┘`,
+      problem: 'Planning and scheduling data were spread across separate operational channels, reducing visibility into timing, scheduling dependencies, and resource allocation.',
+      solution: [
+        'Combined planning records and workflow inputs into one operational dashboard accessible to key decision-makers.',
+        'Used Power Apps and automated logic to structure and improve request intake, validation, and schedule reporting.',
+        'Created a consistent operational planning layer that improved transparency for stakeholders across teams.'
+      ],
+      metrics: [
+        { value: 'Unified', label: 'Planning View' },
+        { value: 'Streamlined', label: 'Operations Workflow' },
+        { value: 'Improved', label: 'Decision Confidence' }
+      ],
+      accentColor: 'from-violet-500/20 to-indigo-600/10 border-violet-500/30'
     }
   ];
 
@@ -170,16 +237,23 @@ export default function PortfolioApp() {
     e.preventDefault();
 
     const form = e.currentTarget;
+
     const formData = new FormData(form);
+    formData.set('_subject', `Portfolio enquiry: ${formState.subject || 'New message'}`);
+    formData.set('_replyto', formState.email);
 
     try {
-      await fetch(FORM_ENDPOINT, {
+      const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         body: formData,
         headers: {
           Accept: 'application/json',
         },
       });
+
+      if (!response.ok) {
+        throw new Error(`Submission failed with status ${response.status}`);
+      }
 
       setFormSubmitted(true);
       setFormState({ name: '', email: '', subject: '', message: '' });
@@ -422,6 +496,36 @@ export default function PortfolioApp() {
                 <div className="text-2xl sm:text-3xl font-bold text-teal-400">70%</div>
                 <div className="text-xs text-slate-400 mt-1">Query Performance Acceleration</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 shadow-[0_25px_60px_rgba(15,23,42,0.35)] hover:border-cyan-500/30 transition-all">
+              <div className="text-xs uppercase tracking-[0.18em] text-cyan-400 font-semibold">Business Value</div>
+              <h3 className="mt-4 text-xl font-bold text-slate-100">Turning raw operational data into faster decisions</h3>
+              <p className="mt-3 text-sm text-slate-300 leading-relaxed">
+                I design dashboards, workflows, and decision models that reduce reporting friction and convert fragmented operational data into action-ready management insight.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 shadow-[0_25px_60px_rgba(15,23,42,0.35)] hover:border-emerald-500/30 transition-all">
+              <div className="text-xs uppercase tracking-[0.18em] text-emerald-400 font-semibold">Operational Excellence</div>
+              <h3 className="mt-4 text-xl font-bold text-slate-100">Building systems leaders can trust at scale</h3>
+              <p className="mt-3 text-sm text-slate-300 leading-relaxed">
+                From Power Apps and automated alerts to SQL optimization and governance standards, I build tools that are resilient, explainable, and ready for real-world operations.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 shadow-[0_25px_60px_rgba(15,23,42,0.35)] hover:border-violet-500/30 transition-all">
+              <div className="text-xs uppercase tracking-[0.18em] text-violet-400 font-semibold">Research &amp; Innovation</div>
+              <h3 className="mt-4 text-xl font-bold text-slate-100">Blending AI, statistics, and field realities</h3>
+              <p className="mt-3 text-sm text-slate-300 leading-relaxed">
+                My work connects scientific rigor with applied implementation, helping organizations use predictive intelligence without losing operational practicality.
+              </p>
             </div>
           </div>
         </div>
